@@ -6,7 +6,7 @@ const { renderToString } = require('react-dom/server');
 
 const { BUILD_DIR } = require('./paths');
 
-const App = require('../client/src/App').default;
+const App = require('../../client/src/App').default;
 
 function reactRenderer(req, res) {
   const myApp = renderToString(<App />);

@@ -47,6 +47,7 @@ allSourceFiles.forEach((filepath) => {
     const transform2 = babel.transformFileSync(libpath, {
       plugins: [
         'transform-es2015-modules-commonjs',
+
         [
           'transform-assets',
           {
@@ -54,6 +55,8 @@ allSourceFiles.forEach((filepath) => {
             name: 'static/media/[name].[hash:8].[ext]',
           },
         ],
+
+        'css-modules-transform',
       ],
     });
     fs.writeFileSync(libpath, transform2.code);

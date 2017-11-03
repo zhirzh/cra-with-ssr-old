@@ -14,8 +14,21 @@ const BASE_DIR = path.join(__dirname, '..');
 const SRC_DIR = path.join(BASE_DIR, 'src');
 const LIB_DIR = path.join(BASE_DIR, 'lib');
 
-walk(SRC_DIR)
-  .filter(filepath => filepath.match(/\.jsx?/))
+const allFiles = walk(SRC_DIR);
+
+allFiles.forEach((filepath) => {
+  const libpath = filepath
+    .replace(SRC_DIR, LIB_DIR)
+    .replace('.jsx', '.js');
+
+  mkdirp(libpath);
+
+  // copy asset file
+  fs.writeFileSync(libpath, fs.readFileSync(filepath));
+});
+
+allFiles
+  .filter(filepath => filepath.match(/\.jsx?$/))
   .forEach((filepath) => {
     const libpath = filepath
       .replace(SRC_DIR, LIB_DIR)
@@ -29,7 +42,16 @@ walk(SRC_DIR)
 
     // second transform converts `import/export` to `require`
     const transform2 = babel.transformFileSync(libpath, {
-      plugins: ['transform-es2015-modules-commonjs']
+      plugins: [
+        'transform-es2015-modules-commonjs',
+        [
+          'webpack-loaders',
+          {
+            config: 'config/webpack.config.lib.js',
+            verbose: false
+          }
+        ]
+      ]
     });
     fs.writeFileSync(libpath, transform2.code);
 

@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var { BUILD_DIR, PUBLIC_DIR } = require('./paths');
+
+require('./browser-polyfill');
 var reactRenderer = require('./react-renderer');
 
 var index = require('./routes/index');

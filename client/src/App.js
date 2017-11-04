@@ -39,7 +39,6 @@ class App extends Component {
 
 function mapStateToProps(state) {
   const name = state;
-  console.log(state)
 
   return { name };
 }

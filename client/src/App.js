@@ -22,11 +22,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <p className="App-intro">
-          <input
-            onChange={this.handleChange}
-            placeholder="Name"
-            value={this.props.name}
-          />
+          <input onChange={this.handleChange} placeholder="Name" value={this.props.name} />
           <button onClick={this.props.resetName}>×</button>
         </p>
         <p className="App-intro">

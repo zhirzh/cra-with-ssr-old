@@ -18,7 +18,7 @@ function reducer(state = initialState, action) {
  */
 function resetName() {
   return {
-    type: 'RESET_NAME'
+    type: 'RESET_NAME',
   };
 }
 
@@ -29,7 +29,7 @@ function resetName() {
 function updateName(name) {
   return {
     type: 'UPDATE_NAME',
-    name
+    name,
   };
 }
 

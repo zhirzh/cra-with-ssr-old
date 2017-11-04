@@ -33,36 +33,34 @@ allAssetFiles.forEach((filepath) => {
 });
 
 allSourceFiles.forEach((filepath) => {
-    const libpath = filepath
-      .replace(SRC_DIR, LIB_DIR)
-      .replace('.jsx', '.js');
+  const libpath = filepath.replace(SRC_DIR, LIB_DIR).replace('.jsx', '.js');
 
-    mkdirp(libpath);
+  mkdirp(libpath);
 
-    // first transform converts es6 code to cjs
-    const transform1 = babel.transformFileSync(filepath, babelrc);
-    fs.writeFileSync(libpath, transform1.code);
+  // first transform converts es6 code to cjs
+  const transform1 = babel.transformFileSync(filepath, babelrc);
+  fs.writeFileSync(libpath, transform1.code);
 
-    // second transform converts `import/export` to `require`
-    const transform2 = babel.transformFileSync(libpath, {
-      plugins: [
-        'transform-es2015-modules-commonjs',
+  // second transform converts `import/export` to `require`
+  const transform2 = babel.transformFileSync(libpath, {
+    plugins: [
+      'transform-es2015-modules-commonjs',
 
-        [
-          'transform-assets',
-          {
-            extensions: ['svg'],
-            name: 'static/media/[name].[hash:8].[ext]',
-          },
-        ],
-
-        'css-modules-transform',
+      [
+        'transform-assets',
+        {
+          extensions: ['svg'],
+          name: 'static/media/[name].[hash:8].[ext]',
+        },
       ],
-    });
-    fs.writeFileSync(libpath, transform2.code);
 
-    // log progress
-    const from = filepath.replace(`${BASE_DIR}/`, '');
-    const to = libpath.replace(`${BASE_DIR}/`, '');
-    console.log(from, '->', to);
+      'css-modules-transform',
+    ],
   });
+  fs.writeFileSync(libpath, transform2.code);
+
+  // log progress
+  const from = filepath.replace(`${BASE_DIR}/`, '');
+  const to = libpath.replace(`${BASE_DIR}/`, '');
+  console.log(from, '->', to);
+});

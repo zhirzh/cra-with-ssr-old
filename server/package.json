@@ -13,6 +13,7 @@
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "eslint": "^4.10.0",
     "express": "~4.15.5",
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
@@ -22,10 +23,17 @@
     "redux": "^3.7.2",
     "serve-favicon": "~2.4.5"
   },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  },
   "babel": {
     "presets": [
       "env",
       "react"
     ]
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base"
   }
 }

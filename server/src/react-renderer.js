@@ -17,7 +17,7 @@ function reactRenderer(req, res) {
   const myApp = renderToString(
     <Provider store={store}>
       <App />
-    </Provider>
+    </Provider>,
   );
 
   const html = fs

@@ -25,7 +25,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.get('/', reactRenderer);
+app.get([
+  '/',
+  '/index.html',
+], reactRenderer);
 
 app.use(express.static(BUILD_DIR));
 app.use(express.static(PUBLIC_DIR));

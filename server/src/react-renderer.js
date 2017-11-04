@@ -17,9 +17,12 @@ function reactRenderer(req, res) {
     </Provider>
   );
 
+  const initialState = 'Slim Shady';
+
   const html = fs
     .readFileSync(path.join(BUILD_DIR, 'index.html'), 'utf8')
-    .replace('__MY_APP__', myApp);
+    .replace('__MY_APP__', myApp)
+    .replace('__REDUX__', JSON.stringify(initialState));
 
   return res.send(html);
 }

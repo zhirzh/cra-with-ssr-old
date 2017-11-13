@@ -7,11 +7,14 @@ const { Provider } = require('react-redux');
 
 const { BUILD_DIR } = require('./paths');
 
-const App = require('../../client/lib/App').default;
-const createStore = require('../../client/lib/store').default;
+const App = require('../../client/lib/components/App').default;
+const createStore = require('../../client/lib/modules/store').default;
 
 function reactRenderer(req, res) {
-  const initialState = 'Slim Shady';
+  const initialState = {
+    name: 'Slim Shady',
+  };
+
   const store = createStore(initialState);
 
   const myApp = renderToString(

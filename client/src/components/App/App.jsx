@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { resetName, updateName } from './reducer';
+import { resetName, updateName } from '../../reducers/name';
 
 import logo from './logo.svg';
 import './App.css';
@@ -34,7 +34,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  const name = state;
+  const { name } = state;
 
   return { name };
 }

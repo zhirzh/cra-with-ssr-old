@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Loadable from 'react-loadable';
 import { Route, Switch } from 'react-router-dom';
 
 import Home from '../Home';
@@ -12,6 +13,11 @@ function NoMatch() {
     </div>
   );
 }
+
+const LoadablePage2 = Loadable({
+  loader: () => import(/* webpackChunkName: "Page2" */ '../Page2'),
+  loading: () => <div>Loading...</div>,
+});
 
 class App extends Component {
   render() {
@@ -30,6 +36,8 @@ class App extends Component {
 
           <Route path="/page-1/:any_optional?" component={Page1} />
           <Route path="/page-1" component={Page1} />
+
+          <Route path="/page-2" component={LoadablePage2} />
 
           <Route render={NoMatch} />
         </Switch>

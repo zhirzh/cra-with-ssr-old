@@ -41,6 +41,7 @@ function reactRenderer(req, res, next) {
   }
 
   const initialState = {
+    foo: 'foobar',
     name: 'Slim Shady',
   };
 

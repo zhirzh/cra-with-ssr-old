@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Page1 extends Component {
   render() {
@@ -6,9 +7,16 @@ class Page1 extends Component {
       <div>
         <h1>Page1</h1>
         <h2>Params: {JSON.stringify(this.props.match.params)}</h2>
+        <h2>Props: {JSON.stringify(this.props.foo)}</h2>
       </div>
     );
   }
 }
 
-export default Page1;
+function mapStateToProps(state) {
+  const { foo } = state;
+
+  return { foo };
+}
+
+export default connect(mapStateToProps)(Page1);

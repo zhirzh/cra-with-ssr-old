@@ -1,44 +1,28 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 
-import { resetName, updateName } from '../../reducers/name';
+import Home from '../Home';
 
-import logo from './logo.svg';
-import './App.css';
+function NoMatch() {
+  return (
+    <div>
+      <h1>404</h1>
+      Page Not Found
+    </div>
+  );
+}
 
 class App extends Component {
-  handleChange = (e) => {
-    this.props.updateName(e.currentTarget.value);
-  };
-
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p className="App-intro">
-          <input onChange={this.handleChange} placeholder="Name" value={this.props.name} />
-          <button onClick={this.props.resetName}>×</button>
-        </p>
-        <p className="App-intro">
-          Hi! My name is <strong>{this.props.name || '…'}</strong>
-        </p>
+      <div>
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <Route render={NoMatch} />
+        </Switch>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  const { name } = state;
-
-  return { name };
-}
-
-const mapDispatchToProps = { resetName, updateName };
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

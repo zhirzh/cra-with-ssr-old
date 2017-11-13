@@ -4,22 +4,59 @@ const path = require('path');
 const React = require('react');
 const { renderToString } = require('react-dom/server');
 const { Provider } = require('react-redux');
+const { matchPath, StaticRouter } = require('react-router');
 
 const { BUILD_DIR } = require('./paths');
 
 const App = require('../../client/lib/components/App').default;
 const createStore = require('../../client/lib/modules/store').default;
 
-function reactRenderer(req, res) {
+const routes = [
+  '/index.html', // service-worker
+  '/',
+
+  '/page-1/:numbers(\\d+)',
+  '/page-1/:alphabets([a-zA-Z]+)',
+
+  '/page-1/:any',
+  '/page-1/:any_regex(.*)',
+  '/page-1/(.*)',
+  '/page-1/*',
+
+  '/page-1/:any_optional?',
+  '/page-1',
+];
+
+function reactRenderer(req, res, next) {
+  const match = routes.find(route =>
+    matchPath(req.path, {
+      path: route,
+      exact: true,
+    }),
+  );
+
+  // bail
+  if (!match) {
+    return next();
+  }
+
   const initialState = {
+    foo: 'foobar',
     name: 'Slim Shady',
   };
 
   const store = createStore(initialState);
 
+  // service-worker
+  const location = match === '/index.html' ? '/' : req.url;
+
+  const context = {};
+
   const myApp = renderToString(
     <Provider store={store}>
-      <App />
+      <StaticRouter location={location} context={context}>
+        <App />
+      </StaticRouter>
     </Provider>,
   );
 

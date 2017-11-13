@@ -14,6 +14,8 @@ const createStore = require('../../client/lib/modules/store').default;
 const routes = [
   '/index.html', // service-worker
   '/',
+
+  '/page-1',
 ];
 
 function reactRenderer(req, res, next) {

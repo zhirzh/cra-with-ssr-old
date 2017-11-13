@@ -19,7 +19,18 @@ class App extends Component {
       <div>
         <Switch>
           <Route path="/" component={Home} exact />
+
+          <Route path="/page-1/:numbers(\d+)" component={Page1} />
+          <Route path="/page-1/:alphabets([a-zA-Z]+)" component={Page1} />
+
+          <Route path="/page-1/:any" component={Page1} />
+          <Route path="/page-1/:any_regex(.*)" component={Page1} />
+          <Route path="/page-1/(.*)" component={Page1} />
+          <Route path="/page-1/*" component={Page1} />
+
+          <Route path="/page-1/:any_optional?" component={Page1} />
           <Route path="/page-1" component={Page1} />
+
           <Route render={NoMatch} />
         </Switch>
       </div>

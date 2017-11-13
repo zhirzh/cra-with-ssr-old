@@ -15,6 +15,15 @@ const routes = [
   '/index.html', // service-worker
   '/',
 
+  '/page-1/:numbers(\\d+)',
+  '/page-1/:alphabets([a-zA-Z]+)',
+
+  '/page-1/:any',
+  '/page-1/:any_regex(.*)',
+  '/page-1/(.*)',
+  '/page-1/*',
+
+  '/page-1/:any_optional?',
   '/page-1',
 ];
 

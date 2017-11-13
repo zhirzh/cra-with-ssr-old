@@ -5,6 +5,7 @@ class Page1 extends Component {
     return (
       <div>
         <h1>Page1</h1>
+        <h2>Params: {JSON.stringify(this.props.match.params)}</h2>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import Async from '../Async';
 import Home from '../Home';
 import Page1 from '../Page1';
 
@@ -10,6 +11,14 @@ function NoMatch() {
       <h1>404</h1>
       Page Not Found
     </div>
+  );
+}
+
+function renderPage2(props) {
+  return (
+    <Async load={() => import(/* webpackChunkName: "Page2" */ '../Page2')}>
+      {Page2 => <Page2 {...props} />}
+    </Async>
   );
 }
 
@@ -30,6 +39,8 @@ class App extends Component {
 
           <Route path="/page-1/:any_optional?" component={Page1} />
           <Route path="/page-1" component={Page1} />
+
+          <Route path="/page-2" render={renderPage2} />
 
           <Route render={NoMatch} />
         </Switch>

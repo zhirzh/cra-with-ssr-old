@@ -15,6 +15,12 @@ function NoMatch() {
 }
 
 function renderPage2(props) {
+  if (process.env.SERVER) {
+    const Page2 = require('../Page2').default;
+
+    return <Page2 />;
+  }
+
   return (
     <Async load={() => import(/* webpackChunkName: "Page2" */ '../Page2')}>
       {Page2 => <Page2 {...props} />}

@@ -25,6 +25,8 @@ const routes = [
 
   '/page-1/:any_optional?',
   '/page-1',
+
+  '/page-2',
 ];
 
 function reactRenderer(req, res, next) {

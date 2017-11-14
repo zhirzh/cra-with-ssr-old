@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const { BUILD_DIR, PUBLIC_DIR } = require('./paths');
 
+process.env.SERVER = true;
+
 require('./browser-polyfill');
 const reactRenderer = require('./react-renderer');
 

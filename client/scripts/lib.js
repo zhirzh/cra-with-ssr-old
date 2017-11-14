@@ -55,6 +55,8 @@ allSourceFiles.forEach((filepath) => {
       ],
 
       'css-modules-transform',
+
+      'dynamic-import-node',
     ],
   });
   fs.writeFileSync(libpath, transform2.code);

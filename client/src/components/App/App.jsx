@@ -37,7 +37,7 @@ class App extends Component {
           <Route path="/page-1/:any_optional?" component={Page1} />
           <Route path="/page-1" component={Page1} />
 
-          <Route path="/page-2" component={LoadablePage2} />
+          <Route path="/page-2/:foo?" component={LoadablePage2} />
 
           <Route render={NoMatch} />
         </Switch>

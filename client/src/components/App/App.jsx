@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from '../Home';
 import Page1 from '../Page1';
+import RoutePattern from '../RoutePattern';
 
 function NoMatch() {
   return (
@@ -38,6 +39,16 @@ class App extends Component {
           <Route path="/page-1" component={Page1} />
 
           <Route path="/page-2/:foo?" component={LoadablePage2} />
+
+          <Route path="/exact" component={RoutePattern} exact />
+          <Route path="/named/:foo" component={RoutePattern} />
+          <Route path="/named-glob/:foo*" component={RoutePattern} />
+          <Route path="/named-one/:foo+" component={RoutePattern} />
+          <Route path="/named-optional/:foo?" component={RoutePattern} />
+          <Route path="/custom/:foo(\d+)" component={RoutePattern} />
+          <Route path="/unnamed/(.*)" component={RoutePattern} />
+          <Route path="/nested/:foo/bar" component={RoutePattern} />
+          <Route path="/glob/*" component={RoutePattern} />
 
           <Route render={NoMatch} />
         </Switch>

@@ -1,3 +1,5 @@
+$primary-color: #222;
+
 .Home {
   text-align: center;
 }
@@ -8,7 +10,7 @@
 }
 
 .Home-header {
-  background-color: #222;
+  background-color: $primary-color;
   height: 150px;
   padding: 20px;
   color: white;

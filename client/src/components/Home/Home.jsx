@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { resetName, updateName } from '../../reducers/name';
 
 import logo from './logo.svg';
-import './Home.css';
+import './Home.scss';
 
 class Home extends Component {
   handleChange = (e) => {

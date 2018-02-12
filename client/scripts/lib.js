@@ -54,7 +54,12 @@ allSourceFiles.forEach((filepath) => {
         },
       ],
 
-      'css-modules-transform',
+      [
+        'css-modules-transform',
+        {
+          extensions: ['.css', '.scss'],
+        }
+      ],
 
       'dynamic-import-node',
     ],
